@@ -1,0 +1,48 @@
+# prompt customization
+parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \1/'
+}
+
+# rvm - per http://tammersaleh.com/posts/a-better-rvm-bash-prompt/
+my_rvm_ruby_version() {
+  gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
+  [ "$gemset" != "" ] && gemset="@$gemset"
+  version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
+  [ "$version" == "1.26.10" ] && version=""
+  full="$version$gemset"
+  [ "$full" != "" ] && echo "$full"
+}
+
+if [[ $- == *i* ]]
+then
+  # regular colors
+  K="\[\033[0;30m\]"    # black
+  R="\[\033[0;31m\]"    # red
+  G="\[\033[0;32m\]"    # green
+  Y="\[\033[0;33m\]"    # yellow
+  B="\[\033[0;34m\]"    # blue
+  M="\[\033[0;35m\]"    # magenta
+  C="\[\033[0;36m\]"    # cyan
+  W="\[\033[0;37m\]"    # white
+
+  # emphasized (bolded) colors
+  bold="$(tput bold)"
+  BB="$bold$(tput setaf 27)"    # BOLD BLUE
+  BW="$bold$(tput setaf 7)"     # BOLD WHITE
+  BC="$bold$(tput setaf 39)"    # BOLD CYAN
+  BG="$bold$(tput setaf 76)"    # BOLD GREEN
+  BY="$bold$(tput setaf 154)"   # BOLD YELLOW
+  BR="$bold$(tput setaf 9)"     # BOLD RED
+
+  # background colors
+  BGK="\[\033[40m\]"    # black
+  BGR="\[\033[41m\]"    # red
+  BGG="\[\033[42m\]"    # green
+  BGY="\[\033[43m\]"    # yellow
+  BGB="\[\033[44m\]"    # blue
+  BGM="\[\033[45m\]"    # magenta
+  BGC="\[\033[46m\]"    # cyan
+  BGW="\[\033[47m\]"    # white
+
+  # export PS1='\['$BB'\]\u\[$(tput sgr0)\] \['$BC'\]\W\['$BY'\]$(parse_git_branch)\[\e[0;39m\] $ '
+fi
