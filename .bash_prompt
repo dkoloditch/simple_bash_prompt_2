@@ -44,5 +44,5 @@ then
   BGC="\[\033[46m\]"    # cyan
   BGW="\[\033[47m\]"    # white
 
-  export PS1='\['$BB'\]\u\[$(tput sgr0)\] \['$BC'\]\W\['$BY'\]$(parse_git_branch)\[\e[0;39m\] $ '
+  export PS1='\['$BR'\]\u\[$(tput sgr0)\] \['$BY'\]\W\['$BG'\]$(parse_git_branch)\[\e[0;39m\] $ '
 fi
