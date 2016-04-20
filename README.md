@@ -1,6 +1,6 @@
 # simple_bash_prompt_2
 
-A simple bash prompt for ruby and RVM users. Features colors and shows current folder, ruby version, gemset, and git branch.
+A simple bash prompt. Features colors and shows hostname, current git project, and current branch.
 
 ![sexy-bash-prompt screenshot][screenshot]
 
